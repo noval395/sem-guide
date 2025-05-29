@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP Seminar - Complete Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+        }
+
+        .nav-item {
+            padding: 1rem 1.5rem;
+            color: #1e3a8a;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: #f1f5f9;
+            border-bottom-color: #3b82f6;
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem 0;
+        }
+
+        .section {
+            display: none;
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-content {
+            padding: 2rem;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .intro-card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .intro-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .big-ideas-container {
+            margin-top: 2rem;
+        }
+
+        .big-idea-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .big-idea-item:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .big-idea-number {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .big-idea-content h4 {
+            color: #1e3a8a;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .big-idea-content p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .assessment-overview {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .exam-overview {
+            margin-bottom: 2rem;
+        }
+
+        .exam-questions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .resource-grid-secondary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .practice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .practice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            align-items: stretch;
+        }
+
+        .practice-grid .tip-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 200px;
+        }
+
+        .practice-grid .tip-card .resource-link {
+            margin-top: auto;
+        }
+
+        .mistakes-tips-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .assessment-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .assessment-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .assessment-card h3 {
+            color: #1e3a8a;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .assessment-card .weight {
+            background: #3b82f6;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .timeline h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .timeline-date {
+            background: #1e3a8a;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 1rem;
+            white-space: nowrap;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .resource-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .resource-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+        }
+
+        .resource-link {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .resource-link:hover {
+            background: #1e3a8a;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tip-card {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .tip-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .research-tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .research-tip-card {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .research-tip-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .research-tip-card h4 {
+            color: #1e3a8a;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .research-tip-card p {
+            color: #64748b;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .alert {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+
+        .alert-success {
+            background: #dcfce7;
+            border-left-color: #22c55e;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            border-left-color: #3b82f6;
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+            }
+
+            .nav-item {
+                text-align: center;
+                padding: 0.8rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .intro-grid,
+            .assessment-grid,
+            .resource-grid,
+            .tips-grid,
+            .research-tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .exam-questions {
+                grid-template-columns: 1fr;
+            }
+
+            .practice-grid,
+            .mistakes-tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>AP Seminar</h1>
+                <p>An overview of the course, tips for success, and resources</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="nav-item active" data-section="overview">📖 Course Overview</a>
+                <a href="#" class="nav-item" data-section="assessments">📝 Assessments</a>
+                <a href="#" class="nav-item" data-section="exam">🎯 End-of-Course Exam</a>
+                <a href="#" class="nav-item" data-section="resources">📚 Resources</a>
+                <a href="#" class="nav-item" data-section="question-development">❓ Question Development</a>
+                <a href="#" class="nav-item" data-section="tips">💡 General Advice</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <!-- Course Overview Section -->
+            <section id="overview" class="section active">
+                <div class="section-header">
+                    <span class="emoji">📖</span>
+                    <h2>Course Overview</h2>
+                    <p>Understand the course and its general contents</p>
+                </div>
+                <div class="section-content">
+                    <h3>What is AP Seminar?</h3>
+                    <p>AP Seminar allows you to explore real world topics/issues of your choice. In this class you will develop the ability to properly analyze and evaluate information from various perspectives, use that analysis to develop arguments, and communicate your ideas in written essays and presentations.</p>
+                    
+                    <p style="margin-top: 1.5rem;">Unlike many other courses that focus on a specific skills or topic, what you learn in this class will be transferable across many classes and into your future. You will improve your critical thinking ability, reasoning, use of evidence, argumentative writing ability, effective communication, slideshow design, and the understanding of multiple perspectives.</p>
+
+                    <h3 style="margin-top: 3rem; text-align: center;">The Five Big Ideas</h3>
+                    <p style="text-align: center; margin-bottom: 2rem;">Throughout AP Seminar you will focus on Five Big Ideas outlined by College Board, they are the following:</p>
+                    
+                    <div class="big-ideas-container">
+                        <div class="big-idea-item">
+                            <div class="big-idea-number">1</div>
+                            <div class="big-idea-content">
+                                <h4>Question and Explore</h4>
+                                <p>Learn to identify problems, develop questions, find information, and evaluate sources from multiple perspectives.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="big-idea-item">
+                            <div class="big-idea-number">2</div>
+                            <div class="big-idea-content">
+                                <h4>Understand and Analyze</h4>
+                                <p>Read critically, explain arguments, analyze reasoning, and evaluate evidence used by authors.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="big-idea-item">
+                            <div class="big-idea-number">3</div>
+                            <div class="big-idea-content">
+                                <h4>Evaluate Multiple Perspectives</h4>
+                                <p>Learn to compare different viewpoints, evaluate implications of something, and understand issues.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="big-idea-item">
+                            <div class="big-idea-number">4</div>
+                            <div class="big-idea-content">
+                                <h4>Synthesize Ideas</h4>
+                                <p>Form conclusions, build arguments using various sources, and develop effective solutions based on evidence.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="big-idea-item">
+                            <div class="big-idea-number">5</div>
+                            <div class="big-idea-content">
+                                <h4>Team, Transform, and Transmit</h4>
+                                <p>Learn working in groups, work collaboratively, plan presentations, and communicate effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <strong>AP Capstone:</strong> AP Seminar is the first course in the AP Capstone Diploma Program. Taking both AP Seminar and AP Research can earn you an AP Capstone Diploma, which may stand out to colleges.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assessments Section -->
+            <section id="assessments" class="section">
+                <div class="section-header">
+                    <span class="emoji">📝</span>
+                    <h2>Assessments</h2>
+                    <p>Understanding the three components that make up your AP score</p>
+                </div>
+                <div class="section-content">
+                    <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">Unlike normal AP's where your score is based on a final exam, in Seminar a majority of your score is based on work completed throughout the year and an exam. In total, your final AP Score is based on three components:</p>
+
+                    <div class="assessment-overview">
+                        <div class="assessment-card">
+                            <h3>Team Project and Presentation (TMP)</h3>
+                            <div class="weight">20% of Final Score</div>
+                            <p><strong>What it is:</strong> Work in teams of 3-5 to identify an area for investigation, research the issue, and create a presentation defending your identified position/solution.</p>
+                            <p><strong>Components:</strong></p>
+                            <ul>
+                                <li>Individual Research Report (1,200 words)</li>
+                                <li>Team Presentation</li>
+                                <li>Oral Defense (1 Question Per Member)</li>
+                            </ul>
+                            <p><strong>Scoring:</strong> Individual Research Report is scored by College Board, Presentation scored by teacher.</p>
+                        </div>
+
+                        <div class="assessment-card">
+                            <h3>Individual Written Argument & Presentation (IWA + IMP)</h3>
+                            <div class="weight">35% of Final Score</div>
+                            <p><strong>What it is:</strong> Using stimulus material provided by College Board and identify an overarching theme or topic to further research, develop your own area for research based on the stimulus, write a paper and presentation to defend your findings/position/solution.</p>
+                            <p><strong>Components:</strong></p>
+                            <ul>
+                                <li>Written Essay (2,000 Words)</li>
+                                <li>Oral Presentation (6-8 Minutes)</li>
+                            </ul>
+                            <p><strong>Scoring:</strong> Individual Written Argument is scored by College Board, Presentation scored by teacher.</p>
+                        </div>
+
+                        <div class="assessment-card">
+                            <h3>End-of-Course Exam (EOC)</h3>
+                            <div class="weight">45% of Final Score</div>
+                            <p><strong>What it is:</strong> 2 hour closed digital exam testing the analytical and writing skills you've developed through the year.</p>
+                            <p><strong>Components:</strong></p>
+                            <ul>
+                                <li>3 Short Answer Questions (Based on 1 Provided Source)</li>
+                                <li>1 Essay Response (Using 4 Provided Sources)</li>
+                            </ul>
+                            <p><strong>Scoring:</strong> Scored by College Board readers.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exam Section -->
+            <section id="exam" class="section">
+                <div class="section-header">
+                    <span class="emoji">🎯</span>
+                    <h2>End-of-Course Exam</h2>
+                    <p>A breakdown of the final exam and tips for success</p>
+                </div>
+                <div class="section-content">
+                    <div class="exam-overview">
+                        <h3 style="text-align: center; margin-bottom: 1rem;">Exam Format & Structure</h3>
+                        <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">The End of Course Exam is a 2 hour closed test with no breaks. It will consist of two parts testing the analytical and writing skills you've practiced throughout the year, think of it as applying what you've learned from the IRR and IWA. The exam will contribute to 45% of your final score.</p>
+                    </div>
+
+                    <h3 style="margin-top: 3rem; text-align: center; margin-bottom: 2rem;">Exam Breakdown</h3>
+                    
+                    <div class="exam-questions">
+                        <div class="assessment-card">
+                            <h3>Part A: Short-Answer Questions</h3>
+                            <div class="weight">30% of EOC Score (13.5% of Final AP Score)</div>
+                            <p><strong>Description:</strong> You will be presented a single source, you are to identify the authors argument, line of reasoning, and the credibility/effectiveness of their evidence.</p>
+                            <p><strong>Skills Tested:</strong></p>
+                            <ul>
+                                <li>Explain and analyze an argument</li>
+                                <li>Identify line of reasoning</li>
+                                <li>Evaluate evidence and claims</li>
+                            </ul>
+                            <p><strong>Time Suggestion:</strong> ~30 minutes total</p>
+                        </div>
+
+                        <div class="assessment-card">
+                            <h3>Part B: Essay Question</h3>
+                            <div class="weight">70% of EOC Score (31.5% of Final AP Score)</div>
+                            <p><strong>Description:</strong> You will be given 4 sources all with a common overarching theme, are you to identify this theme and construct your own argument using at least two of the given sources as evidence.</p>
+                            <p><strong>Skills Tested:</strong></p>
+                            <ul>
+                                <li>Synthesize information from multiple sources</li>
+                                <li>Create an evidence-based argument</li>
+                                <li>Evaluate multiple perspectives</li>
+                            </ul>
+                            <p><strong>Time Suggestion:</strong> ~90 minutes</p>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success">
+                        <strong>Timing Suggestions:</strong> The listed 30 and 90 minutes are suggested estimates, take time as you see necessary just keep in mind Part B will likely be more time consuming.
+                    </div>
+
+                    <h3 style="margin-top: 3rem; text-align: center; margin-bottom: 2rem;">Practice and Preparation</h3>
+                    <div class="practice-grid">
+                        <div class="tip-card">
+                            <h3>🏫 AP Classroom Practice</h3>
+                            <ul>
+                                <li>Access practice exams through AP Classroom</li>
+                                <li>Complete timed practice sessions to become familiar</li>
+                                <li>Use College Board's official practice materials</li>
+                            </ul>
+                            <a href="https://myap.collegeboard.org" class="resource-link" target="_blank" style="margin-top: 1rem;">Access AP Classroom</a>
+                        </div>
+                        <div class="tip-card">
+                            <h3>📝 Past Exams & Responses</h3>
+                            <ul>
+                                <li>Study previous exam questions from AP Central</li>
+                                <li>View sample student responses and scoring</li>
+                            </ul>
+                            <a href="https://apcentral.collegeboard.org/courses/ap-seminar/exam/past-exam-questions" class="resource-link" target="_blank" style="margin-top: 1rem;">View Past Exam Questions</a>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 3rem; text-align: center; margin-bottom: 2rem;">Common Mistakes & Tips</h3>
+                    <div class="mistakes-tips-grid">
+                        <div class="tip-card">
+                            <h3>📝 Part A Tips</h3>
+                            <ul>
+                                <li>Consider credibility when evaluating evidence.</li>
+                                <li>Consider bias when evaluating evidence.</li>
+                                <li>Try to understand the authors argument at the beginning.</li>
+                                <li>When evaluating effectiveness of evidence introduce the claim, the evidence it is supported by, state weather it is effective or not, then elaborate on why.</li>
+                            </ul>
+                        </div>
+                        <div class="tip-card">
+                            <h3>✍️ Part B Tips</h3>
+                            <ul>
+                                <li>Create your own unique argument, don't just repeat or reword sources.</li>
+                                <li>Complete one read through of all 4 sources before jumping into writing.</li>
+                                <li>Take time to plan your essay before writing, make sure you have enough time to do this.</li>
+                                <li>Do not make your statements 100% assertive, soften them, you have limited evidence (ex: "this IS why" vs "a potential explanation for").</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resources Section -->
+            <section id="resources" class="section">
+                <div class="section-header">
+                    <span class="emoji">📚</span>
+                    <h2>Resources</h2>
+                    <p>Tools and resources you will find to be critical in AP Seminar</p>
+                </div>
+                <div class="section-content">
+                    <h3 style="text-align: center; margin-bottom: 2rem;">Databases & Sources</h3>
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h3>📊 JSTOR</h3>
+                            <p>Access to a broad range of research material and even primary sources.</p>
+                            <a href="https://www.jstor.org/" class="resource-link" target="_blank">Access JSTOR</a>
+                        </div>
+                        <div class="resource-card">
+                            <h3>🔍 ProQuest</h3>
+                            <p>A database of journals, books, and research.</p>
+                            <a href="https://www.proquest.com/" class="resource-link" target="_blank">Access ProQuest</a>
+                        </div>
+                        <div class="resource-card">
+                            <h3>📖 EBSCOhost</h3>
+                            <p>Access provided by school and College Board, research database and resources.</p>
+                            <a href="https://www.ebsco.com/" class="resource-link" target="_blank">Access EBSCOhost</a>
+                        </div>
+                        <div class="resource-card">
+                            <h3>🎓 Google Scholar</h3>
+                            <p>A search engine for articles, scholarly material, books, papers, etc..</p>
+                            <a href="https://scholar.google.com/" class="resource-link" target="_blank">Access Google Scholar</a>
+                        </div>
+                        <div class="resource-card">
+                            <h3>🏥 National Library of Medicine</h3>
+                            <p>Medical Database with extensive credible research, very useful for biological, medical, and scientific research.</p>
+                            <a href="https://pubmed.ncbi.nlm.nih.gov/" class="resource-link" target="_blank">Access PubMed</a>
+                        </div>
+                        <div class="resource-card">
+                            <h3>⚖️ Gale Opposing Viewpoints</h3>
+                            <p>Presents multiple perspectives on existing societal issues and topics.</p>
+                            <a href="https://link.gale.com/apps/OVIC?userGroupName=flan92350" class="resource-link" target="_blank">Access Opposing Viewpoints</a>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 3rem; text-align: center; margin-bottom: 2rem;">Official College Board Resources</h3>
+                    <div class="resource-grid">
+                        <div class="resource-card">
+                            <h3>📋 IWA Rubric</h3>
+                            <p>Most recent and updated scoring guidelines for the Individual Written Argument</p>
+                            <a href="https://apcentral.collegeboard.org/media/pdf/ap-seminar-iwa-scoring-guidelines.pdf" class="resource-link" target="_blank">Access IWA Rubric</a>
+                        </div>
+                        <div class="resource-card">
+                            <h3>📊 IRR & TMP Rubric</h3>
+                            <p>Most recent and updated scoring guidelines for the Individual Research Report and Team Multimedia Presentation</p>
+                            <a href="https://apcentral.collegeboard.org/media/pdf/ap24-sg-seminar-pt1.pdf" class="resource-link" target="_blank">Access IRR & TMP Rubric</a>
+                        </div>
+                        <div class="resource-card">
+                            <h3>🎙️ Sample TMP Oral Defense</h3>
+                            <p>Potential Oral Defense questions you may be presented with for your TMP, be prepared for all.</p>
+                            <a href="https://bayonetenglish.com/wp-content/uploads/2019/07/ap-seminar-tmp-oral-defense-questions.pdf" class="resource-link" target="_blank">Access Sample Questions</a>
+                        </div>
+                        <div class="resource-card">
+                            <h3>🎥 AP Daily Videos</h3>
+                            <p>Available in AP Classroom once you join your class section. Cover every proficiency and skill in the course.</p>
+                            <a href="https://myap.collegeboard.org" class="resource-link" target="_blank">Access in AP Classroom</a>
+                        </div>
+                        <div class="resource-card">
+                            <h3>📝 Past Exam Questions</h3>
+                            <p>Free-response questions from previous years with scoring guidelines and sample responses.</p>
+                            <a href="https://apcentral.collegeboard.org/courses/ap-seminar/exam/past-exam-questions" class="resource-link" target="_blank">View Past Questions</a>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 3rem; text-align: center; margin-bottom: 2rem;">Additional Resources</h3>
+                    <div class="resource-grid-secondary">
+                        <div class="resource-card">
+                            <h3>✍️ Purdue OWL</h3>
+                            <p>Writing, formatting, and style guide for both APA and MLA format.</p>
+                            <a href="https://owl.purdue.edu/" class="resource-link" target="_blank">Access Purdue OWL</a>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <strong>School Library Access:</strong> Our school provides access to many databases and other paid sites for free, find additional information and passwords <a href="https://docs.google.com/presentation/d/1IRsSafUGETXiW4_fwOUjA6sQwYkHYTIrpnGtCiT4P6o/edit?usp=sharing" target="_blank" style="color: #1e3a8a; text-decoration: underline;">here</a>, and everything you can access <a href="https://mohs.motsd.org/mohs-student-life/mohs-library-media-center" target="_blank" style="color: #1e3a8a; text-decoration: underline;">here</a>.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Question Development Section -->
+            <section id="question-development" class="section">
+                <div class="section-header">
+                    <span class="emoji">❓</span>
+                    <h2>Question Development</h2>
+                    <p>Creating an effective research question</p>
+                </div>
+                <div class="section-content">
+                    <h3 style="margin-top: 2rem; text-align: center; margin-bottom: 2rem;">Building a Strong Research Question</h3>
+                    <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">Here are a few things to consider when creating your research question for the IWA and IRR:</p>
+                    
+                    <div class="research-tips-grid">
+                        <div class="research-tip-card">
+                            <h4>🎯 Balanced Question</h4>
+                            <p>The question should be narrow enough to deeply investigate, but not too specific and still remain broad enough so that it is still researchable.</p>
+                        </div>
+                        
+                        <div class="research-tip-card">
+                            <h4>⚖️ Room for Debate</h4>
+                            <p>A good research question should be arguable and there should be room for debate, there should be area for people to disagree with. Don't create questions with obvious or undisputed answers.</p>
+                        </div>
+                        
+                        <div class="research-tip-card">
+                            <h4>🚫 Avoid Nested Questions</h4>
+                            <p>Do not create a nested question. A nested question is a question inside of another question where the second question commonly relies on an answer to the first.</p>
+                        </div>
+                        
+                        <div class="research-tip-card">
+                            <h4>🔍 Knowing the Answer</h4>
+                            <p>You should not have an answer to your question as soon as it's developed and before you have researched. If you do it likely isn't a good question. You are researching with the purpose of finding the answer.</p>
+                        </div>
+
+                        <div class="research-tip-card">
+                            <h4>❌ Avoid Yes or No Questions</h4>
+                            <p>The answer to your question should not be a one word "yes" or "no", for example if it's a position based question: "We should ___ because ___"</p>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info" style="margin-top: 2rem;">
+                        <strong>Research Process:</strong> If you have a definitive answer to your question as soon as you develop it, and before researching, it likely isn't a good question. You are researching to find that conclusion.
+                    </div>
+
+                    <h3 style="margin-top: 3rem; text-align: center; margin-bottom: 2rem;">Solution Based vs. Position Based</h3>
+                    
+                    <div class="assessment-grid">
+                        <div class="assessment-card">
+                            <h3>🔧 Solution Based Questions</h3>
+                            <p>Establish, recognize, and prove the existence of an issue, and argue for a proposed solution(s) with evidence.</p>
+                            <p><strong>Examples:</strong></p>
+                            <ul>
+                                <li>"How should..."</li>
+                                <li>"How can ___ be addressed..."</li>
+                            </ul>
+                        </div>
+
+                        <div class="assessment-card">
+                            <h3>📍 Position Based Questions</h3>
+                            <p>Take a position on an issue or controversy/debate and logically support your position using evidence.</p>
+                            <p><strong>Examples:</strong></p>
+                            <ul>
+                                <li>"Should..."</li>
+                                <li>"What is the most effective..."</li>
+                                <li>"To what extent..."</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Tips Section -->
+            <section id="tips" class="section">
+                <div class="section-header">
+                    <span class="emoji">💡</span>
+                    <h2>General Advice</h2>
+                    <p>General advice to find success in AP Seminar</p>
+                </div>
+                <div class="section-content">
+                    <div class="alert alert-info">
+                        <strong>Unfinished:</strong> This section is currently incomplete. I left most of my advice throughout the rest of the website.
+                    </div>
+
+                    <h3 style="margin-top: 2rem; text-align: center; margin-bottom: 2rem;">Planned Additions (Time Constraints)</h3>
+                    
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <h3>📝 Additional Content Pages</h3>
+                            <ul>
+                                <li>Additional Pages for IWA advice</li>
+                                <li>Additional Pages for IMP advice</li>
+                                <li>Additional Pages for TMP advice</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <h3>🎨 Design Resources</h3>
+                            <ul>
+                                <li>Page for guides on slide creation and design</li>
+                                <li>Embedded example presentations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-item');
+            const sections = document.querySelectorAll('.section');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all nav items and sections
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    sections.forEach(section => section.classList.remove('active'));
+                    
+                    // Add active class to clicked nav item
+                    this.classList.add('active');
+                    
+                    // Show corresponding section
+                    const targetSection = document.getElementById(this.dataset.section);
+                    targetSection.classList.add('active');
+                    
+                    // Smooth scroll to top of main content
+                    document.querySelector('main').scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
+                });
+            });
+
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.assessment-card, .resource-card, .intro-card, .research-tip-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Add click animation to resource links
+            const resourceLinks = document.querySelectorAll('.resource-link');
+            resourceLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
